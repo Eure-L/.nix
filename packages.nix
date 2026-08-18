@@ -12,6 +12,7 @@
     libreoffice
     tmux
     tree
+    usbutils
 
     # Dev
     rustup
@@ -31,6 +32,28 @@
     jetbrains.clion
     vscodium
   ];
+
+  programs.bash = {
+    enable = true;
+
+    interactiveShellInit = builtins.readFile ./bashfuns.sh;
+
+    promptInit = ''
+      PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;31m\] $(parse_git_branch)\[\033[00m\]\$ '
+    '';
+
+    shellAliases = {
+      ".." = "cd ..";
+      "..." = "cd ../..";
+      ll = "ls -lah";
+      la = "ls -A";
+      nix-clean = "nix-collect-garbage -d";
+      gl = "git log --oneline --graph --decorate";
+      df = "df -h";
+      du = "du -h";
+      ports = "ss -tulpn";
+    };
+  };
 
   environment.sessionVariables.XDG_DATA_DIRS = [
 	"${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
