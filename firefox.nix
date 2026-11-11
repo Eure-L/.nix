@@ -9,7 +9,7 @@
       DisableFirefoxStudies = true;
       DontCheckDefaultBrowser = true;
       OfferToSaveLogins = false;
-      PasswordManagerEnabled = false;
+      PasswordManagerEnabled = true;
 
       Homepage = {
         StartPage = "homepage";
